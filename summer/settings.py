@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Packs
     'bootstrapform',
+    'import_export',
     #Apps
     'apps.core',
     'apps.compras',
