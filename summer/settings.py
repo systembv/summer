@@ -19,7 +19,11 @@ INSTALLED_APPS = [
     #Packs
     'bootstrapform',
     #Apps
-    'apps.core'
+    'apps.core',
+    'apps.compras',
+    'apps.saidas',
+    'apps.pecas',
+    'apps.unidades',
 ]
 
 MIDDLEWARE = [
