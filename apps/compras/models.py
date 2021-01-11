@@ -7,7 +7,7 @@ from apps.unidades.models import Unidade
 
 
 class Compras(models.Model):
-    nome = models.CharField('Item comprado: ', max_length=80, help_text='Insira item comprado')
+    nome = models.CharField('Nome: ', max_length=80, help_text='Insira nome')
     item = models.ForeignKey(Pecas, on_delete=models.PROTECT, null=True, blank=True,
                              help_text='Insira Item comprado', verbose_name="Item comprado:")
     quantidade = models.DecimalField('Quantidade comprada:', max_digits=10, decimal_places=2, blank=True, null=True,

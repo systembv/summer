@@ -1,15 +1,15 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Compras
+from .models import Funcionarios
 from django.core import validators
 
 
-class ComprasForm(ModelForm):
+class FuncionariosForm(ModelForm):
 
     class Meta:
-        model = Compras
+        model = Funcionarios
         fields = (
-                "nome", "item", "quantidade", "valor",
+                "nome",
                 )
 
         widgets = {
