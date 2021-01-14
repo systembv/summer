@@ -9,7 +9,7 @@ class SaidasForm(ModelForm):
     class Meta:
         model = Saidas
         fields = (
-                "nome", "item", "quantidade", "unidade"
+                "nome", "item", "quantidade", "unidade", "responsavel"
                 )
 
         widgets = {

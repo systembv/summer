@@ -17,7 +17,10 @@
 			<div class="row justify-content-center">
                 <div class="col-6">
 				{% csrf_token %}
-				{{ form|bootstrap }}<br>
+				{{ form.nome|bootstrap }}<br>
+                {{ form.item|bootstrap }}<br>
+                {{ form.quantidade|bootstrap }}<br>
+                {{ form.unidade|bootstrap }}<br>
                 </div>
 			</div>
 		</div>

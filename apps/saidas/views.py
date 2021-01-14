@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Saidas
 from .forms import SaidasForm
-
+from apps.funcionarios.models import Funcionarios
 
 def ListaSaidas(request):
     saidas = Saidas.objects.all().order_by("id")
@@ -14,7 +14,9 @@ def CriarSaidas(request):
         form = SaidasForm(request.POST or None, request.FILES or None)
 
         if form.is_valid():
+            id = request.user.id
             form = form.save(commit=False)
+            form.responsavel = Funcionarios.objects.get(id=id)
             form.save()
             return redirect("lista_saidas")
 
