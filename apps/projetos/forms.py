@@ -9,7 +9,7 @@ class ProjetosForm(ModelForm):
     class Meta:
         model = Projetos
         fields = (
-                "nome",
+                "nome", "cliente"
                 )
 
         widgets = {

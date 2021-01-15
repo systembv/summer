@@ -6,4 +6,5 @@ urlpatterns = [
     path('criar/', v.CriarProjetos, name= "criar_projetos"),
     path('deletar/<int:id>/', v.DeletarProjetos, name= "deletar_projetos"),
     path('editar/<int:id>/', v.EditarProjetos, name= "editar_projetos"),
+    path('detalhes/<int:id>/', v.DetalhesProjeto, name= "detalhes_projeto"),
 ]
