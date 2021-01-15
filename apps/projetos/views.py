@@ -53,8 +53,13 @@ def DetalhesProjeto(request, id):
     projetos = Projetos.objects.all().filter(id=id)
     saidas = Saidas.objects.all().filter(projeto_id=id)
 
+    quantidade_pecas = 0
+    for item in saidas:
+        if item.quantidade == None:
+            item.quantidade = 0,00
+        quantidade_pecas += item.quantidade
 
-    object = {"projetos":projetos, "saidas":saidas}
+    object = {"projetos":projetos, "saidas":saidas, "quantidade":quantidade_pecas}
     return render(request, 'projetos/detalhes_projeto.html', object)
 
 

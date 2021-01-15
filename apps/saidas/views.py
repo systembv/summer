@@ -12,13 +12,14 @@ def ListaSaidas(request):
 
     search = request.GET.get("pesquisa", None)
 
+
     if search:
         saidas = Saidas.objects.all().order_by("id")
-        saidas = saidas.filter(item=search)
+        saidas = saidas.filter(item__nome__icontains=search)
 
     else:
         saidas = Saidas.objects.all().order_by("id")
-        paginator = Paginator(saidas, 3)
+        paginator = Paginator(saidas, 5)
         page = request.GET.get("page")
         saidas = paginator.get_page(page)
 
@@ -83,7 +84,6 @@ def EditarSaidas(request, id):
         saidas.quantidade = 0
     quantidade_inicial = saidas.quantidade
     if form.is_valid():
-        print(unidade_saida)
         id = saidas.item.id
         saidas.unidade = unidade_saida
         saidas.responsavel = responsavel_saida

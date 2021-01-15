@@ -6,18 +6,22 @@
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <h2>Lista de Saidas</h2>
         </div>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-<form action="#" method="GET" id=search-form class="form-inline my-2 my-lg-0">
-<input class="form-control mr-sm-2" type="search" id="pesquisa" name="pesquisa" placeholder="Search" aria-label="Search">
-<button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
+
+<form action="#" method="GET" id=search-form class="d-grid gap-2 d-md-flex justify-content-md-end">
+<div class="row">
+<input class="form-control mr-sm-2" type="search" id="pesquisa" name="pesquisa" placeholder="Buscar..." aria-label="Search">
+</div>&nbsp
+<button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Busca</button>
 </form>
-        </div>
+
     </div>
 </div>
 
-<div class="row justify-content-end">
 
-<br><br>
+
+
+<br>
+
 <div class="row justify-content-center">
     <div class="col-10">
 		<div class="card text-dark bg-light border border-dark border border-3">
@@ -108,5 +112,8 @@
     {% endif %}
   </ul>
 </nav>
+
+
+
 
 {% endblock %}

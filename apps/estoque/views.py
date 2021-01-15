@@ -11,8 +11,10 @@ def ListaEstoques(request):
     estoques = Estoque.objects.all().order_by("id")
     #form = EstoqueForm(request.POST or None, request.FILES or None, instance=estoques)
     compras = Compras.objects.all().order_by("id")
-    qtd = 0
+    qtd = 0,00
     for item in estoques:
+        if item.quantidade == None:
+            item.quantidade = 0,00
         qtd += item.quantidade
     object = {"estoques": estoques, "qtd":qtd}
 
