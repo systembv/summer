@@ -12,9 +12,8 @@ def ListaEstoques(request):
     #form = EstoqueForm(request.POST or None, request.FILES or None, instance=estoques)
     compras = Compras.objects.all().order_by("id")
     qtd = 0
-    for item in compras:
+    for item in estoques:
         qtd += item.quantidade
-
     object = {"estoques": estoques, "qtd":qtd}
 
     return render(request, 'estoques/lista_estoques.html', object)

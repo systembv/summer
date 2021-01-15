@@ -21,6 +21,8 @@ def CriarCompras(request):
             form = form.save(commit=False)
             id = form.item.id
             quantidade = form.quantidade
+            if quantidade == None:
+                quantidade = 0
             pecas = get_object_or_404(Pecas, pk=id)
             form.unidade = pecas.unidade
             form.save()

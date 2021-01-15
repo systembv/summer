@@ -5,6 +5,8 @@ from apps.estoque.models import Estoque
 from apps.unidades.models import Unidade
 from apps.estoque.models import Estoque
 from apps.compras.models import Compras
+from apps.saidas.models import Saidas
+
 
 def ListaPecas(request):
     pecas = Pecas.objects.all().order_by("id")
@@ -69,6 +71,14 @@ def EditarPecas(request, id):
             if item.item.id == pecas_id:
                 item.unidade = unidade
                 item.save()
+
+        for item in Saidas.objects.all():
+            if item.item.id == pecas_id:
+                item.unidade = unidade
+                item.save()
+
+
+
 
         return redirect("lista_pecas")
 

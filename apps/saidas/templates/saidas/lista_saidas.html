@@ -11,7 +11,7 @@
 
 <br><br>
 <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-10">
 		<div class="card text-dark bg-light border border-dark border border-3">
             <table class="table">
                 <thead>
@@ -22,19 +22,21 @@
                         <th scope="col">Quantidade</th>
                         <th scope="col">Unidade</th>
                         <th scope="col">Respons</th>
+                        <th scope="col">Projeto</th>
                     </tr>
                 </thead>
             <tbody>
                 {% for saida in saidas %}
-                  <tr>
-                  <th scope="row">{{ saida.id }}</th>
-                  <td>{{ saida.nome }}</td>
-                  <td>{{ saida.item }}</td>
-                  <td>{{ saida.quantidade }}</td>
-                  <td>{{ saida.unidade }}</td>
-                  <td>{{ saida.responsavel }}</td>
-                  <td>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <tr>
+                    <th scope="row">{{ saida.id }}</th>
+                    <td>{{ saida.nome }}</td>
+                    <td>{{ saida.item }}</td>
+                    <td>{{ saida.quantidade }}</td>
+                    <td>{{ saida.unidade }}</td>
+                    <td>{{ saida.responsavel }}</td>
+                    <td>{{ saida.projeto }}</td>
+                    <td>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
 
                 <a href="{% url 'editar_saidas' saida.id %}"><button class="btn btn-outline-primary btn-sm" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -60,7 +62,7 @@
 
 <br>
 <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-10">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
         <a href="{% url 'home' %}"><button class="btn btn-primary me-md-2" type="button">
