@@ -7,7 +7,9 @@ from apps.unidades.models import Unidade
 class Estoque(models.Model):
     item = models.ForeignKey(Pecas, on_delete=models.PROTECT, verbose_name="Itens:")
     unidade = models.ForeignKey(Unidade, on_delete=models.PROTECT, verbose_name="Unidade:")
-    quantidade = models.DecimalField('Quantidade do item:', max_digits=10, decimal_places=2, blank=True, null=True)
+    quantidade = models.DecimalField('Quantidade do item:', max_digits=16, decimal_places=2, blank=True, null=True)
+    valor = models.DecimalField('Valor do item:', max_digits=16, decimal_places=2, blank=True, null=True)
+    valor_total = models.DecimalField('Valor total do item:', max_digits=16, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return str(self.item)

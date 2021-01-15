@@ -64,7 +64,10 @@ def EditarPecas(request, id):
             estoque.unidade = unidade
             estoque.save()
         except:
-            pass
+            estoque = Estoque()
+            estoque.item = Pecas.objects.get(pk=id)
+            estoque.unidade = Unidade.objects.get(pk=unidade.id)
+            estoque.save()
 
 
         for item in Compras.objects.all():

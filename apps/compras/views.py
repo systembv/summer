@@ -21,6 +21,7 @@ def CriarCompras(request):
             form = form.save(commit=False)
             id = form.item.id
             quantidade = form.quantidade
+            valor = form.valor
             if quantidade == None:
                 quantidade = 0
             pecas = get_object_or_404(Pecas, pk=id)
@@ -31,6 +32,7 @@ def CriarCompras(request):
             if estoque.quantidade == None:
                 estoque.quantidade = 0
             estoque.quantidade += quantidade
+            estoque.valor = valor
             estoque.save()
             return redirect("lista_compras")
 
@@ -68,14 +70,12 @@ def EditarCompras(request, id):
         id = compras.item.id
         quantidade = compras.quantidade
         form.save()
-
         estoque = Estoque.objects.get(item_id=id)
         if estoque.quantidade == None:
             estoque.quantidade = 0
         estoque.quantidade += quantidade - quantidade_inicial
         estoque.save()
         return redirect("lista_compras")
-
 
     object = {'form': form, 'compras': compras}
     return render(request, 'compras/editar_compras.html', object)

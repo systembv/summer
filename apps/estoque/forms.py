@@ -9,7 +9,7 @@ class EstoqueForm(ModelForm):
     class Meta:
         model = Estoque
         fields = (
-                "item", "unidade", "quantidade",
+                "item", "unidade", "quantidade","valor"
                 )
 
 
