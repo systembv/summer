@@ -19,6 +19,9 @@
             <h6>O cliente é "{{ projeto.cliente }}"<br></h6><br>
             {% endfor %}
 
+{% for saida in saidas %}
+{{ saida.item }} - {{ saida.quantidade }}<br>
+{% endfor %}
 
         </div>
     </div>

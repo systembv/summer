@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Projetos
 from .forms import ProjetosForm
-
+from apps.saidas.models import Saidas
 
 def ListaProjetos(request):
     projetos = Projetos.objects.all().order_by("id")
@@ -51,7 +51,10 @@ def EditarProjetos(request, id):
 
 def DetalhesProjeto(request, id):
     projetos = Projetos.objects.all().filter(id=id)
-    object = {"projetos":projetos}
+    saidas = Saidas.objects.all().filter(projeto_id=id)
+
+
+    object = {"projetos":projetos, "saidas":saidas}
     return render(request, 'projetos/detalhes_projeto.html', object)
 
 

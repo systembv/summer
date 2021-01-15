@@ -3,11 +3,19 @@
 {% block main %}
 <div class="row justify-content-center">
     <div class="col-10">
-      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <h2>Lista de Saidas</h2>
-      </div>
+        </div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<form action="#" method="GET" id=search-form class="form-inline my-2 my-lg-0">
+<input class="form-control mr-sm-2" type="search" id="pesquisa" name="pesquisa" placeholder="Search" aria-label="Search">
+<button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
+</form>
+        </div>
     </div>
 </div>
+
+<div class="row justify-content-end">
 
 <br><br>
 <div class="row justify-content-center">
@@ -78,5 +86,27 @@
         </div>
     </div>
 </div>
+
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      {% if saidas.has_previous %}
+    <li class="page-item enable">
+      <a class="page-link" href="?page={{ saidas.previous_page_number}}" tabindex="-1" aria-disabled="true">Anterior</a>
+    </li>
+      {% endif %}
+
+    {% for pag in saidas.paginator %}
+    <li class="page-item"><a class="page-link" href="/saidas/?page={{ pag.number }}"> {{ pag.number }} </a></li>
+    {% endfor %}
+
+    {% if saidas.has_next %}
+      <li class="page-item">
+      <a class="page-link" href="?page={{ saidas.next_page_number}}">Próxima</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}

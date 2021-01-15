@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Saidas
 from .forms import SaidasForm
@@ -8,6 +9,19 @@ from apps.estoque.models import Estoque
 
 def ListaSaidas(request):
     saidas = Saidas.objects.all().order_by("id")
+
+    search = request.GET.get("pesquisa", None)
+
+    if search:
+        saidas = Saidas.objects.all().order_by("id")
+        saidas = saidas.filter(item=search)
+
+    else:
+        saidas = Saidas.objects.all().order_by("id")
+        paginator = Paginator(saidas, 3)
+        page = request.GET.get("page")
+        saidas = paginator.get_page(page)
+
     object = {"saidas":saidas}
     return render(request, 'saidas/lista_saidas.html', object)
 
