@@ -9,28 +9,9 @@ from apps.compras.models import Compras
 
 def ListaEstoques(request):
     estoques = Estoque.objects.all().order_by("id")
-    #form = EstoqueForm(request.POST or None, request.FILES or None, instance=estoques)
-    compras = Compras.objects.all().order_by("id")
-
-    for item in estoques:
-        id = item.id
-        estoque = Estoque.objects.get(id=id)
-        if estoque.valor == None:
-            estoque.valor = 0
-        if estoque.quantidade == None:
-            estoque.quantidade = 0
-        estoque.save()
-
-    for item in estoques:
-        id = item.id
-        estoque = Estoque.objects.get(id=id)
-        estoque.valor_total = estoque.valor * estoque.quantidade
-        estoque.save()
 
     qtd = 0
     for item in estoques:
-        if item.quantidade == None:
-            item.quantidade = 0
         qtd += item.quantidade
     object = {"estoques": estoques, "qtd":qtd}
 
@@ -41,6 +22,7 @@ def EditarEstoques(request, id):
     estoque = get_object_or_404(Estoque, pk=id)
     form = EstoqueForm(request.POST or None, request.FILES or None, instance=estoque)
     if form.is_valid():
+        estoque.valor_total = estoque.valor * estoque.quantidade
         form.save()
         return redirect("lista_estoques")
 

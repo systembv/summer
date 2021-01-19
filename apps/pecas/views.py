@@ -27,6 +27,9 @@ def CriarPecas(request):
             estoque = Estoque()
             estoque.item = Pecas.objects.get(pk=id)
             estoque.unidade = Unidade.objects.get(pk=unidade)
+            estoque.quantidade = 0
+            estoque.valor = 0
+            estoque.valor_total = 0
             estoque.save()
 
             return redirect("lista_pecas")

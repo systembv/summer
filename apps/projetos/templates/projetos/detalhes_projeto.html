@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block main %}
 <div class="row justify-content-center">
     <div class="col-10">
@@ -19,10 +20,12 @@
             <h6>O cliente é "{{ projeto.cliente }}"<br></h6><br>
             {% endfor %}
 
-{% for saida in saidas %}
-{{ saida.item }} -------- {{ saida.quantidade }}<br>
+{% for saida, val in ziplist %}
+{{ saida.item }} -------- {{ saida.quantidade }} -----  {{ val }}<br>
 {% endfor %}
-<br><h4>O total de peças é de {{ quantidade }} itens.</h4>
+
+
+<br><h4>O valor do projeto atual é de {{ valor }}</h4>
         </div>
     </div>
 </div>

@@ -44,9 +44,8 @@ def CriarSaidas(request):
             form.save()
 
             estoque = Estoque.objects.get(item_id=item_id)
-            if estoque.quantidade == None:
-                estoque.quantidade = 0
             estoque.quantidade -= quantidade
+            estoque.valor_total = estoque.valor * estoque.quantidade
             estoque.save()
 
             return redirect("lista_saidas")

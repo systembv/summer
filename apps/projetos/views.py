@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Projetos
 from .forms import ProjetosForm
 from apps.saidas.models import Saidas
+from apps.estoque.models import Estoque
 
 def ListaProjetos(request):
     projetos = Projetos.objects.all().order_by("id")
@@ -53,13 +54,24 @@ def DetalhesProjeto(request, id):
     projetos = Projetos.objects.all().filter(id=id)
     saidas = Saidas.objects.all().filter(projeto_id=id)
 
-    quantidade_pecas = 0
-    for item in saidas:
-        if item.quantidade == None:
-            item.quantidade = 0,00
-        quantidade_pecas += item.quantidade
 
-    object = {"projetos":projetos, "saidas":saidas, "quantidade":quantidade_pecas}
+    val_total = []
+    for item in saidas:
+        id = item.item.id
+        peca = Estoque.objects.get(item_id=id)
+        val_total.append(item.quantidade * peca.valor)
+
+    valor_pecas = 0
+    for val in val_total:
+        valor_pecas += val
+
+    valor_pecas = "{:,.2f}".format(valor_pecas).replace(".","..").replace(",",".").replace("..",",")
+
+
+    ziplist = zip(saidas, val_total)
+
+    object = {"projetos":projetos, "saidas":saidas,
+              "valor":valor_pecas, "val_item":val_total, "ziplist":ziplist}
     return render(request, 'projetos/detalhes_projeto.html', object)
 
 
