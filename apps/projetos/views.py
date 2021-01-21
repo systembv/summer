@@ -54,24 +54,34 @@ def DetalhesProjeto(request, id):
     projetos = Projetos.objects.all().filter(id=id)
     saidas = Saidas.objects.all().filter(projeto_id=id)
 
-
-    val_total = []
+    valores_soma = []
+    valores = []
     for item in saidas:
         id = item.item.id
         peca = Estoque.objects.get(item_id=id)
-        val_total.append(item.quantidade * peca.valor)
+        info = []
+        peca_valor_edit = "{:,.2f}".format(peca.valor).replace(".","..").replace(",",".").replace("..",",")
+        info.append(peca.valor)
+        valores_soma.append(item.quantidade * peca.valor)
+        info.append("{:,.2f}".format(item.quantidade * peca.valor).replace(".","..").replace(",",".").replace("..",","))
+        valores.append(info)
+
+    print(valores)
 
     valor_pecas = 0
-    for val in val_total:
+    for val in valores_soma:
         valor_pecas += val
 
     valor_pecas = "{:,.2f}".format(valor_pecas).replace(".","..").replace(",",".").replace("..",",")
 
+    ziplist = zip(saidas, valores)
 
-    ziplist = zip(saidas, val_total)
+    dados_tab = []
+
 
     object = {"projetos":projetos, "saidas":saidas,
-              "valor":valor_pecas, "val_item":val_total, "ziplist":ziplist}
+              "valor":valor_pecas, "ziplist":ziplist, "dados_tab":dados_tab}
+
     return render(request, 'projetos/detalhes_projeto.html', object)
 
 
