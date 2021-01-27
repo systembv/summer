@@ -58,12 +58,13 @@ def DetalhesProjeto(request, id):
     valores = []
     for item in saidas:
         id = item.item.id
-        peca = Estoque.objects.get(item_id=id)
+        #peca = Estoque.objects.get(item_id=id)
+        print(item.valor)
         info = []
-        peca_valor_edit = "{:,.2f}".format(peca.valor).replace(".","..").replace(",",".").replace("..",",")
-        info.append(peca.valor)
-        valores_soma.append(item.quantidade * peca.valor)
-        info.append("{:,.2f}".format(item.quantidade * peca.valor).replace(".","..").replace(",",".").replace("..",","))
+        peca_valor_edit = "{:,.2f}".format(item.valor).replace(".","..").replace(",",".").replace("..",",")
+        info.append(item.valor)
+        valores_soma.append(item.quantidade * item.valor)
+        info.append("{:,.2f}".format(item.quantidade * item.valor).replace(".","..").replace(",",".").replace("..",","))
         valores.append(info)
 
     print(valores)

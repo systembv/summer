@@ -14,7 +14,8 @@ class Saidas(models.Model):
     quantidade = models.DecimalField('Quantidade:', max_digits=10, decimal_places=2, blank=True, null=True, help_text='Quantidade item saida')
     unidade = models.ForeignKey(Unidade, on_delete=models.PROTECT, null=True, blank=True, help_text='Insira a unidade', verbose_name="Unidade:")
     projeto = models.ForeignKey(Projetos, on_delete=models.PROTECT, null=True, blank=True, help_text='Insira projeto para o item', verbose_name="Projeto:")
-
+    valor = models.DecimalField('Valor:', max_digits=10, decimal_places=2, blank=True, null=True, help_text='Valor item saida')
+    valor_total = models.DecimalField('Valor total:', max_digits=10, decimal_places=2, blank=True, null=True, help_text='Valor total saida')
 
     def __str__(self):
         return self.nome

@@ -41,6 +41,10 @@ def CriarSaidas(request):
                 quantidade = 0
             pecas = get_object_or_404(Pecas, pk=item_id)
             form.unidade = pecas.unidade
+            estoque = Estoque.objects.get(item_id=item_id)
+            form.valor = estoque.valor
+            form.valor_total = quantidade * estoque.valor
+            id_saida = form.id
             form.save()
 
             estoque = Estoque.objects.get(item_id=item_id)
